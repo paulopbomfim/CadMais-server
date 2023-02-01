@@ -1,3 +1,6 @@
+using CadMais.Data;
+using CadMais.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
