@@ -51,9 +51,6 @@ public class UserMap : IEntityTypeConfiguration<User>
       .HasColumnType("SMALLDATETIME")
       .HasDefaultValueSql("GETDATE()");
 
-    builder.HasMany( x => x.Address )
-      .WithOne( x => x.User )
-      .HasConstraintName("FK_User_Address")
-      .OnDelete(DeleteBehavior.Cascade);
+    builder.HasMany( x => x.Address );
   }
 }

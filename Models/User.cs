@@ -8,7 +8,7 @@ public class User
   public string Email { get; set; }
   public string Phone { get; set; }
   public string Password { get; set; }
-  public IList<Address> Address { get; set; }
+  public IEnumerable<Address> Address { get; set; }
   public DateTime CreatedAt { get; set; }
   public DateTime UpdatedAt { get; set; }
 }

@@ -1,4 +1,5 @@
 using CadMais.Data;
+using CadMais.Repositories;
 using CadMais.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,9 +7,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddDbContext<CadMaisDataContext>();
+builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 
