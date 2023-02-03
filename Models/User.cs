@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace CadMais.Models;
 
 public class User
@@ -9,6 +11,4 @@ public class User
   public string Phone { get; set; }
   public string Password { get; set; }
   public IEnumerable<Address> Address { get; set; }
-  public DateTime CreatedAt { get; set; }
-  public DateTime UpdatedAt { get; set; }
 }

@@ -41,16 +41,6 @@ public class UserMap : IEntityTypeConfiguration<User>
       .HasColumnType("VARCHAR")
       .HasMaxLength(11);
 
-    builder.Property( x => x.CreatedAt )
-      .IsRequired()
-      .HasColumnType("SMALLDATETIME")
-      .HasDefaultValueSql("GETDATE()");
-
-    builder.Property( x => x.UpdatedAt )
-      .IsRequired()
-      .HasColumnType("SMALLDATETIME")
-      .HasDefaultValueSql("GETDATE()");
-
     builder.HasMany( x => x.Address );
   }
 }

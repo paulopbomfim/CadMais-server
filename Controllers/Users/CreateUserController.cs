@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using CadMais.ViewModels;
 using CadMais.Models;
 using CadMais.Repositories;
+using CadMais.Services;
 
 namespace CadMais.Controller;
 
@@ -22,6 +23,23 @@ public class CreateUserController : ControllerBase
   {
     try
     {
+      Validations validations = new();
+
+      var isPasswordValid = validations.ValidatePassword(newUser.Password);
+      var isCpfValid = validations.ValidateCpf(newUser.CPF);
+      var isNameValid = validations.ValidateName(newUser.Name);
+      var isEmailValid = validations.ValidateEmail(newUser.Name);
+      var isPhoneValid = validations.ValidatePhone(newUser.Name);
+
+      if (!isCpfValid || !isNameValid)
+      {
+        return BadRequest("Check the entries and try again");
+      }
+      if (!isPasswordValid)
+      {
+        return BadRequest("Check the entries and try again");
+      }
+
       var UserId = await _repository.Create(newUser);
 
       return Ok($"/user/{UserId}");
