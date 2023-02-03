@@ -1,7 +1,7 @@
 # CadMais-server
 Desafio técnico
 
-O projeto consiste numa aplicação em C# que funciona como back-end de um módulo ce cadastramento de usuários de um sistema ERP.
+O projeto consiste numa aplicação em C# que funciona como back-end de um módulo de cadastramento de usuários de um sistema ERP.
 ---
 ## Tecnologias utilizadas
 - .Net 6.0
@@ -30,6 +30,6 @@ O Projeto foi desenvolvido utilizando o dotnet 6.0 e a cli do Entity Framework
 
 ---
 ## Proximos passos
--[] Finalizar validação das entradas de dados
--[] Implementar Autenticação e Autorização de usuários com Token JWT
--[] Desenvolver o Front-end da aplicação
+- [ ] Finalizar validação das entradas de dados
+- [ ] Implementar Autenticação e Autorização de usuários com Token JWT
+- [ ] Desenvolver o Front-end da aplicação
