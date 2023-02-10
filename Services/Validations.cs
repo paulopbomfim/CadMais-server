@@ -1,13 +1,84 @@
 using System.Text.RegularExpressions;
+using CadMais.Models;
+using CadMais.ViewModels;
 
 namespace CadMais.Services;
 
 public class Validations
 {
-  public bool ValidateName(string name)
+  public string Password { get; set; }
+  public string Cpf { get; set; }
+  public string Name { get; set; }
+  public string Email { get; set; }
+  public string Phone { get; set; }
+
+  public Validations (User user) {
+    this.Name = user.Name;
+    this.Email = user.Email;
+    this.Cpf = user.CPF;
+    this.Password = user.Password;
+    this.Phone = user.Phone;
+  }
+
+  public ValidationsReturnViewModel Validate()
+  {
+      var isPasswordValid = this.ValidatePassword();
+      var isCpfValid = this.ValidateCpf();
+      var isNameValid = this.ValidateName();
+      var isEmailValid = this.ValidateEmail();
+      var isPhoneValid = this.ValidatePhone();
+
+      if (!isPasswordValid) {
+        return new ValidationsReturnViewModel()
+        {
+          Message = "The Password format is invalid.",
+          Status = "Error"
+        };
+      }
+
+      if (!isCpfValid) {
+        return new ValidationsReturnViewModel()
+        {
+          Message = "The CPF format is invalid.",
+          Status = "Error"
+        };
+      }
+
+      if (!isNameValid) {
+        return new ValidationsReturnViewModel()
+        {
+          Message = "The Name format is invalid.",
+          Status = "Error"
+        };
+      }
+
+      if (!isEmailValid) {
+        return new ValidationsReturnViewModel()
+        {
+          Message = "The Email format is invalid.",
+          Status = "Error"
+        };
+      }
+
+      if (!isPhoneValid) {
+        return new ValidationsReturnViewModel()
+        {
+          Message = "The Phone format is invalid.",
+          Status = "Error"
+        };
+      }
+
+      return new ValidationsReturnViewModel()
+        {
+          Message = "the User data format is valid",
+          Status = "Success"
+        };
+  }
+
+  public bool ValidateName()
   {
     var nameRgx = new Regex(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$");
-    if (name.Length >=4 && nameRgx.IsMatch(name))
+    if (this.Name.Length >=4 && nameRgx.IsMatch(this.Name))
     {
       return true;
     }
@@ -15,11 +86,11 @@ public class Validations
     return false;
   }
 
-  public bool ValidateEmail(string email)
+  public bool ValidateEmail()
   {
-    var emailRgx = new Regex(@"([^\.](.*)@(\w+)(\.\w+)(\.?\w+))");
+    var emailRgx = new Regex(@"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$");
 
-    if (emailRgx.IsMatch(email))
+    if (emailRgx.IsMatch(this.Email))
     {
       return true;
     }
@@ -27,9 +98,14 @@ public class Validations
     return false;
   }
 
-  public bool ValidateCpf(string cpf)
+  public bool ValidateCpf()
   {
-    char[] cpfArray = cpf.ToCharArray();
+    if (this.Cpf.Length < 11 || this.Cpf.Length > 11)
+    {
+      return false;
+    }
+    
+    char[] cpfArray = this.Cpf.ToCharArray();
     double accumulator = 0;
     int multiplier = 11;
 
@@ -59,11 +135,11 @@ public class Validations
     return false;
   }
 
-  public bool ValidatePassword(string password)
+  public bool ValidatePassword()
   {
     var passwordRgx = new Regex(@"^^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*])[0-9a-zA-Z!@#$%&*]+");
 
-    if (passwordRgx.IsMatch(password))
+    if (passwordRgx.IsMatch(this.Password))
     {
       return true;
     }
@@ -71,10 +147,10 @@ public class Validations
     return false;
   }
 
-  public bool ValidatePhone(string phone)
+  public bool ValidatePhone()
   {
     var phoneRegex = new Regex(@"\d+");
-    if (phone.Length >= 11 && phoneRegex.IsMatch(phone))
+    if (this.Phone.Length >= 11 && phoneRegex.IsMatch(this.Phone))
     {
       return true;
     }

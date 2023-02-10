@@ -32,7 +32,7 @@ public class ListUserController : ControllerBase
     }
   }
 
-  [HttpGet("{id}")]
+  [HttpGet("id/{id}")]
   public async Task<ActionResult<UserViewModel>> ListById(int id)
   {
     try
@@ -52,7 +52,7 @@ public class ListUserController : ControllerBase
     }
   }
 
-  [HttpGet("{email}")]
+  [HttpGet("email/{email}")]
   public async Task<ActionResult<UserViewModel>> ListByEmail([FromRoute] string email)
   {
     try
@@ -72,7 +72,7 @@ public class ListUserController : ControllerBase
     }
   }
 
-  [HttpGet("{cpf}")]
+  [HttpGet("cpf/{cpf}")]
   public async Task<ActionResult<UserViewModel>> ListByCpf([FromRoute] string cpf)
   {
     try

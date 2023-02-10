@@ -23,21 +23,12 @@ public class CreateUserController : ControllerBase
   {
     try
     {
-      Validations validations = new();
+      Validations validations = new(newUser);
+      var validatedData = validations.Validate();
 
-      var isPasswordValid = validations.ValidatePassword(newUser.Password);
-      var isCpfValid = validations.ValidateCpf(newUser.CPF);
-      var isNameValid = validations.ValidateName(newUser.Name);
-      var isEmailValid = validations.ValidateEmail(newUser.Name);
-      var isPhoneValid = validations.ValidatePhone(newUser.Name);
-
-      if (!isCpfValid || !isNameValid)
+      if (validatedData.Status == "Error")
       {
-        return BadRequest("Check the entries and try again");
-      }
-      if (!isPasswordValid)
-      {
-        return BadRequest("Check the entries and try again");
+        return BadRequest(validatedData);
       }
 
       var UserId = await _repository.Create(newUser);
@@ -46,7 +37,7 @@ public class CreateUserController : ControllerBase
     }
     catch (Exception exception)
     {
-      return BadRequest(exception.Message);
+      return StatusCode(500, exception.Message);
     }
   }
 }

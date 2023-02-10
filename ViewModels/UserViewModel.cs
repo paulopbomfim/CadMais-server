@@ -1,5 +1,3 @@
-using CadMais.Models;
-
 namespace CadMais.ViewModels;
 
 public class UserViewModel
