@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 using CadMais.ViewModels;
 using CadMais.Repositories;
@@ -18,6 +19,7 @@ public class ListUserController : ControllerBase
 
   [HttpGet("/users")]
   [Tags("Users")]
+  [Authorize]
   public async Task<ActionResult<UserViewModel>> List()
   {
     try
@@ -33,6 +35,7 @@ public class ListUserController : ControllerBase
   }
 
   [HttpGet("id/{id}")]
+  [Authorize]
   public async Task<ActionResult<UserViewModel>> ListById(int id)
   {
     try
@@ -53,6 +56,7 @@ public class ListUserController : ControllerBase
   }
 
   [HttpGet("email/{email}")]
+  [Authorize]
   public async Task<ActionResult<UserViewModel>> ListByEmail([FromRoute] string email)
   {
     try
@@ -73,6 +77,7 @@ public class ListUserController : ControllerBase
   }
 
   [HttpGet("cpf/{cpf}")]
+  [Authorize]
   public async Task<ActionResult<UserViewModel>> ListByCpf([FromRoute] string cpf)
   {
     try

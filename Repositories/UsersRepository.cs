@@ -120,13 +120,12 @@ public class UsersRepository : IUsersRepository
       .FirstOrDefaultAsync(x => x.CPF == cpf);
   }
 
-  public async Task<User?> Update(int id, User user)
+  public async Task<User?> Update(int id, UserUpdateViewModel user)
   {
     var userFound = await _context.User
       .Include(x => x.Address)
       .FirstOrDefaultAsync(x => x.Id == id);
 
-    // var userAddress = await _context.Address.
 
     if (userFound is null)
     {

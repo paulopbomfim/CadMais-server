@@ -24,18 +24,11 @@ public class AuthenticationService
   {
     var tokenHandler = new JwtSecurityTokenHandler();
 
-    var secret = "570599d420acc25723b337b0db95c7c7";
-
-    if (secret == null)
-    {
-      throw new InvalidOperationException("Secret not found");
-    }
-
     var tokenDescriptor = new SecurityTokenDescriptor()
     {
       Subject = AddClaims(user),
       SigningCredentials = new SigningCredentials(
-        new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secret)),
+        new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration.JwtSecret)),
         SecurityAlgorithms.HmacSha256Signature
       ),
       Expires = DateTime.Now.AddDays(1)

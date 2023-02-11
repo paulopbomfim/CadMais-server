@@ -149,7 +149,7 @@ public class Validations
 
   public bool ValidatePhone()
   {
-    var phoneRegex = new Regex(@"\d+");
+    var phoneRegex = new Regex(@"^(\d{2})(\d{9})$");
     if (this.Phone.Length >= 11 && phoneRegex.IsMatch(this.Phone))
     {
       return true;

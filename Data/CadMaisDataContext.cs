@@ -9,10 +9,8 @@ public class CadMaisDataContext : DbContext
   public DbSet<User> User { get; set;}
   public DbSet<Address> Address { get; set;}
 
-  protected override void OnConfiguring(DbContextOptionsBuilder options)
-  {
-    options.UseSqlServer("Server=localhost,1433;TrustServerCertificate=True;Database=CadMais;User ID=sa;Password=Password12!");
-  }
+  public CadMaisDataContext(DbContextOptions<CadMaisDataContext> options) : base(options)
+  {}
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

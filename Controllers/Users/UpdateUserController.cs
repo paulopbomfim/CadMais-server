@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 using CadMais.Repositories;
 using CadMais.Models;
+using CadMais.Services;
+using CadMais.ViewModels;
 
 namespace CadMais.Controller;
 
@@ -22,10 +25,17 @@ public class UpdateUserController : ControllerBase
 
 
   [HttpPut("{id}")]
-  public async Task<ActionResult> Delete([FromRoute]int id, [FromBody] User user)
+  [Authorize]
+  public async Task<ActionResult> Delete([FromRoute]int id, [FromBody] UserUpdateViewModel user)
   {
     try
     {
+      var isCurrentUser = AuthorizationService.VerifyIdentity(id.ToString(), User);
+      if (!isCurrentUser)
+      {
+        return Unauthorized("You can't update another user");
+      }
+
       var updatedUser = await _repository.Update(id, user);
 
       if (updatedUser is null)

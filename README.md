@@ -6,7 +6,9 @@ O projeto consiste numa aplicação em C# que funciona como back-end de um módu
 ## Tecnologias utilizadas
 - .Net 6.0
 - Asp.Net 6
-- Entity Framework 
+- Entity Framework
+- JWT Bearer
+- BCrypt
 - Insomnia (Para fazer as requisições)
 ---
 
@@ -15,21 +17,27 @@ O Projeto foi desenvolvido utilizando o dotnet 6.0 e a cli do Entity Framework
 ### Para rodar a aplicação rode os seguintes comandos no terminal
 - Baixe as dependências do projeto com:
 ```
- dotnet restore
+dotnet restore
 ```
 
 - com o banco de dados inicializado, rode:
 ```
- dotnet ef database update
+dotnet ef database update
 ```
 
 - Para executar a aplicação:
 ```
- dotnet run
+dotnet run
+```
+
+- A documentação da API pode ser encontrada na rota
+```
+https://localhost:7099/swagger
 ```
 
 ---
-## Proximos passos
-- [ ] Finalizar validação das entradas de dados
-- [ ] Implementar Autenticação e Autorização de usuários com Token JWT
+## Próximos passos
+- [x] Finalizar validação das entradas de dados
+- [x] Implementar Autenticação e Autorização de usuários com Token JWT
+- [ ] Implementar Rota de recuperação de senhas
 - [ ] Desenvolver o Front-end da aplicação

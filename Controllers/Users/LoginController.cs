@@ -35,7 +35,7 @@ public class LoginController : ControllerBase
         return Unauthorized("User email or password are incorrect");
       }
 
-      return Ok("User successfully logged in");
+      return Ok(new AuthenticationService().GenerateToken(user));
 
     }
     catch (Exception exception)

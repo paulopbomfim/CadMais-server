@@ -11,6 +11,6 @@ public interface IUsersRepository
   public Task<UserViewModel?> ListById(int id);
   public Task<UserViewModel?> ListByEmail(string email);
   public Task<UserViewModel?> ListByCpf(string cpf);
-  public Task<User?> Update(int id, User user);
+  public Task<User?> Update(int id, UserUpdateViewModel user);
   public Task<User?> Login(string email);
 }
