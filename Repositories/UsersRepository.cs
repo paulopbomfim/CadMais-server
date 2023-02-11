@@ -13,12 +13,12 @@ public class UsersRepository : IUsersRepository
   {
     _context = context;
   }
-  public async Task<int> Create(User newUser)
+  public async Task<User> Create(User newUser)
   {
     var content = await _context.User.AddAsync(newUser);
     await _context.SaveChangesAsync();
 
-    return content.Entity.Id;
+    return content.Entity;
   }
 
   public async Task<User?> Delete(int id)
@@ -143,5 +143,10 @@ public class UsersRepository : IUsersRepository
 
     await _context.SaveChangesAsync();
     return userFound;
+  }
+
+  public async Task<User?> Login(string email)
+  {
+    return await _context.User.AsNoTracking().FirstOrDefaultAsync( x => x.Email == email);
   }
 }

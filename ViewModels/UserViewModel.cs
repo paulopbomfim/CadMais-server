@@ -8,4 +8,5 @@ public class UserViewModel
   public string? Email { get; set; }
   public string? Phone { get; set; }
   public IEnumerable<AddressViewModel>? Address { get; set; }
+  public string? Token { get; set; }
 }

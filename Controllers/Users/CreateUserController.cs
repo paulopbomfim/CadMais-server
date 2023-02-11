@@ -19,7 +19,7 @@ public class CreateUserController : ControllerBase
   }
 
   [HttpPost]
-  public async Task<ActionResult<UserViewModel>> Create([FromBody] User newUser)
+  public async Task<ActionResult> Create([FromBody] User newUser)
   {
     try
     {
@@ -31,9 +31,40 @@ public class CreateUserController : ControllerBase
         return BadRequest(validatedData);
       }
 
-      var UserId = await _repository.Create(newUser);
+      var isCpfAlreadyRegistered = await _repository.ListByCpf(newUser.CPF);
+      var isEmailAlreadyRegistered = await _repository.ListByEmail(newUser.Email);
 
-      return Ok($"/user/{UserId}");
+      if(isCpfAlreadyRegistered != null || isEmailAlreadyRegistered != null)
+      {
+        return BadRequest
+        (
+          new ValidationsReturnViewModel()
+          {
+            Message = "User already registered",
+            Status = "Error"
+          }
+        );
+      }
+
+      var passwordHash = SecurityService.EncryptPassword(newUser.Password);
+      newUser.Password = passwordHash;
+
+      var user = await _repository.Create(newUser);
+
+
+
+      return Created($"/user/{user.Id}", new UserViewModel() {
+        Id = user.Id,
+        CPF = user.CPF,
+        Email = user.Email,
+        Name = user.Name,
+        Phone = user.Phone,
+        Address = user.Address.Select(x => new AddressViewModel() {
+          Id = x.Id,
+          Location = x.Location
+        }),
+        Token = new AuthenticationService().GenerateToken(user)
+      });
     }
     catch (Exception exception)
     {
