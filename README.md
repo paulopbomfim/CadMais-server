@@ -1,5 +1,5 @@
 <h1 align="center">
-  Cad+ Módulo (cadastro de usuários - Servidor)
+  Cad+ (Módulo cadastro de usuários - Servidor)
 </h1>
 
 ---
