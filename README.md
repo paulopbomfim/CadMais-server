@@ -1,7 +1,12 @@
-# CadMais-server
-Desafio técnico
+<h1 align="center">
+  Cad+ Módulo (cadastro de usuários - Servidor)
+</h1>
 
-O projeto consiste numa aplicação em C# que funciona como back-end de um módulo de cadastramento de usuários de um sistema ERP.
+---
+
+## Projeto
+
+- O projeto é um desafio técnico para uma empresa que me candidatei e consiste numa aplicação de um módulo de cadastramento de usuários para um sistema ERP de um hospital.
 ---
 ## Tecnologias utilizadas
 - .Net 6.0
