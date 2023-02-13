@@ -44,5 +44,6 @@ https://localhost:7099/swagger
 ## Próximos passos
 - [x] Finalizar validação das entradas de dados
 - [x] Implementar Autenticação e Autorização de usuários com Token JWT
+- [ ] Adicionar hierarquia por cargos
 - [ ] Implementar Rota de recuperação de senhas
 - [ ] Desenvolver o Front-end da aplicação
