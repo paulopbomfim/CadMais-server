@@ -1,7 +1,12 @@
-# CadMais-server
-Desafio técnico
+<h1 align="center">
+  Cad+ (Módulo cadastro de usuários - Servidor)
+</h1>
 
-O projeto consiste numa aplicação em C# que funciona como back-end de um módulo de cadastramento de usuários de um sistema ERP.
+---
+
+## Projeto
+
+- O projeto é um desafio técnico para uma empresa que me candidatei e consiste numa aplicação de um módulo de cadastramento de usuários para um sistema ERP de um hospital.
 ---
 ## Tecnologias utilizadas
 - .Net 6.0
@@ -39,5 +44,6 @@ https://localhost:7099/swagger
 ## Próximos passos
 - [x] Finalizar validação das entradas de dados
 - [x] Implementar Autenticação e Autorização de usuários com Token JWT
+- [ ] Adicionar hierarquia por cargos
 - [ ] Implementar Rota de recuperação de senhas
 - [ ] Desenvolver o Front-end da aplicação
