@@ -19,6 +19,7 @@
 
 ## Inicialização 
 O Projeto foi desenvolvido utilizando o dotnet 6.0 e a cli do Entity Framework
+  - Obs.: O banco de dados é um MS SQL Server criado dentro de um container Docker
 ### Para rodar a aplicação rode os seguintes comandos no terminal
 - Baixe as dependências do projeto com:
 ```
